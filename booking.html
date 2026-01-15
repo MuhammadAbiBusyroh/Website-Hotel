@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan Kamar - Grand Luxury Hotel</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .booking-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0 50px;
+            margin-top: -76px;
+        }
+        
+        .booking-steps {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .step-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .step-icon i {
+            font-size: 30px;
+            color: white;
+        }
+        
+        .booking-form-section {
+            padding: 60px 0;
+        }
+        
+        .room-option {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .room-option:hover {
+            border-color: #0d6efd;
+            background-color: #f8f9fa;
+        }
+        
+        .room-option.selected {
+            border-color: #0d6efd;
+            background-color: #e7f1ff;
+        }
+        
+        .price-tag {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+        
+        .security-badge {
+            background: #e8f4fd;
+            border-left: 4px solid #0d6efd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .summary-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html"><i class="fas fa-hotel"></i> Grand Luxury Hotel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#rooms">Kamar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#facilities">Fasilitas</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="booking.html">Pesan Kamar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/riwayat.html">Riwayat</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Header -->
+    <section class="booking-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold">Pesan Kamar Hotel</h1>
+                    <p class="lead">Pilih kamar favorit Anda dan nikmati pengalaman menginap terbaik</p>
+                    <div class="d-flex align-items-center">
+                        <div class="me-4">
+                            <i class="fas fa-shield-alt fa-2x text-warning"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Booking Aman & Terpercaya</h5>
+                            <p class="mb-0">Data pribadi Anda dilindungi dengan enkripsi tingkat tinggi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Steps -->
+    <section class="booking-steps">
+        <div class="container">
+            <h2 class="text-center mb-5">Cara Pemesanan</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>1. Pilih Kamar</h4>
+                        <p>Pilih tipe kamar yang sesuai dengan kebutuhan Anda dari berbagai pilihan yang tersedia</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h4>2. Tentukan Tanggal</h4>
+                        <p>Pilih tanggal check-in dan check-out sesuai dengan rencana perjalanan Anda</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h4>3. Konfirmasi & Bayar</h4>
+                        <p>Konfirmasi pemesanan dan lakukan pembayaran dengan metode yang tersedia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="booking-form-section">
+        <div class="container">
+            <div class="row">
+                <!-- Form Pemesanan -->
+                <div class="col-lg-8">
+                    <div class="card shadow mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0"><i class="fas fa-calendar-plus"></i> Form Pemesanan Kamar</h4>
+                        </div>
+                        <div class="card-body">
+                            <form id="bookingForm">
+                                <!-- Step 1: Pilih Kamar -->
+                                <div class="mb-5">
+                                    <h5 class="mb-4"><span class="badge bg-primary me-2">1</span> Pilih Tipe Kamar</h5>
+                                    <div class="row">
+                                        <!-- Standard Room -->
+                                        <div class="col-md-6 mb-3">
+                                            <div class="room-option" onclick="selectRoom('standard')" id="standardRoom">
+                                                <h5>Standard Room</h5>
+                                                <p class="text-muted">Kamar nyaman dengan fasilitas lengkap untuk perjalanan bisnis atau liburan</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <span class="price-tag">Rp 500.000</span>
+                                                        <span class="text-muted"> / malam</span>
+                                                    </div>
+                                                    <div class="room-features">
+                                                        <small><i class="fas fa-user"></i> 2 Orang</small>
+                                                        <small class="ms-2"><i class="fas fa-wifi"></i> Free WiFi</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Deluxe Room -->
+                                        <div class="col-md-6 mb-3">
+                                            <div class="room-option" onclick="selectRoom('deluxe')" id="deluxeRoom">
+                                                <h5>Deluxe Room</h5>
+                                                <p class="text-muted">Kamar lebih luas dengan view kota dan fasilitas premium</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <span class="price-tag">Rp 850.000</span>
+                                                        <span class="text-muted"> / malam</span>
+                                                    </div>
+                                                    <div class="room-features">
+                                                        <small><i class="fas fa-user"></i> 3 Orang</small>
+                                                        <small class="ms-2"><i class="fas fa-tv"></i> Smart TV</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Suite Room -->
+                                        <div class="col-md-6 mb-3">
+                                            <div class="room-option" onclick="selectRoom('suite')" id="suiteRoom">
+                                                <h5>Suite Room</h5>
+                                                <p class="text-muted">Kamar mewah dengan living room terpisah dan fasilitas eksklusif</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <span class="price-tag">Rp 1.200.000</span>
+                                                        <span class="text-muted"> / malam</span>
+                                                    </div>
+                                                    <div class="room-features">
+                                                        <small><i class="fas fa-user"></i> 4 Orang</small>
+                                                        <small class="ms-2"><i class="fas fa-spa"></i> Private Spa</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Family Room -->
+                                        <div class="col-md-6 mb-3">
+                                            <div class="room-option" onclick="selectRoom('family')" id="familyRoom">
+                                                <h5>Family Room</h5>
+                                                <p class="text-muted">Kamar keluarga dengan 2 kamar tidur dan ruang keluarga</p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <span class="price-tag">Rp 1.500.000</span>
+                                                        <span class="text-muted"> / malam</span>
+                                                    </div>
+                                                    <div class="room-features">
+                                                        <small><i class="fas fa-user"></i> 6 Orang</small>
+                                                        <small class="ms-2"><i class="fas fa-utensils"></i> Kitchenette</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2: Tanggal Menginap -->
+                                <div class="mb-5">
+                                    <h5 class="mb-4"><span class="badge bg-primary me-2">2</span> Tanggal Menginap</h5>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="checkIn" class="form-label">Check-in Date</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                                <input type="date" class="form-control" id="checkIn" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="checkOut" class="form-label">Check-out Date</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                                <input type="date" class="form-control" id="checkOut" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="nights" class="form-label">Jumlah Malam</label>
+                                            <input type="number" class="form-control" id="nights" min="1" max="30" value="1" readonly>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="guests" class="form-label">Jumlah Tamu</label>
+                                            <select class="form-select" id="guests" required>
+                                                <option value="1">1 Orang</option>
+                                                <option value="2" selected>2 Orang</option>
+                                                <option value="3">3 Orang</option>
+                                                <option value="4">4 Orang</option>
+                                                <option value="5">5 Orang</option>
+                                                <option value="6">6 Orang</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 3: Data Pribadi -->
+                                <div class="mb-5">
+                                    <h5 class="mb-4"><span class="badge bg-primary me-2">3</span> Data Pribadi</h5>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="fullName" class="form-label">Nama Lengkap</label>
+                                            <input type="text" class="form-control" id="fullName" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="phone" class="form-label">No. Telepon</label>
+                                            <input type="tel" class="form-control" id="phone" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="identity" class="form-label">No. KTP/Passport</label>
+                                            <input type="text" class="form-control" id="identity" required>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="specialRequest" class="form-label">Permintaan Khusus (Opsional)</label>
+                                            <textarea class="form-control" id="specialRequest" rows="3" placeholder="Contoh: Kamar lantai tinggi, tempat tidur twin, dll."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 4: Pembayaran -->
+                                <div class="mb-4">
+                                    <h5 class="mb-4"><span class="badge bg-primary me-2">4</span> Metode Pembayaran</h5>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="paymentMethod" id="transfer" value="transfer" checked>
+                                                <label class="form-check-label" for="transfer">
+                                                    <i class="fas fa-university"></i> Transfer Bank
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard">
+                                                <label class="form-check-label" for="creditCard">
+                                                    <i class="fas fa-credit-card"></i> Kartu Kredit
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Security Info -->
+                                <div class="security-badge">
+                                    <h6><i class="fas fa-shield-alt text-primary"></i> Keamanan Data Pribadi Anda</h6>
+                                    <p class="mb-0 small">Informasi pribadi Anda dilindungi dengan enkripsi SSL 256-bit. Kami tidak akan membagikan data Anda kepada pihak ketiga tanpa izin.</p>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="d-grid gap-2 mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-check-circle"></i> Konfirmasi & Lanjutkan Pembayaran
+                                    </button>
+                                    <a href="../index.html" class="btn btn-outline-secondary">
+                                        <i class="fas fa-arrow-left"></i> Kembali
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="col-lg-4">
+                    <div class="summary-card">
+                        <h5 class="mb-4"><i class="fas fa-receipt"></i> Ringkasan Pemesanan</h5>
+                        
+                        <div class="mb-3">
+                            <h6>Detail Kamar</h6>
+                            <div class="d-flex justify-content-between">
+                                <span>Kamar:</span>
+                                <span id="summaryRoom">Belum dipilih</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Durasi:</span>
+                                <span id="summaryNights">1 Malam</span>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="mb-3">
+                            <h6>Rincian Harga</h6>
+                            <div class="d-flex justify-content-between">
+                                <span>Harga Kamar:</span>
+                                <span id="summaryPrice">Rp 0</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Pajak (10%):</span>
+                                <span id="summaryTax">Rp 0</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Layanan (5%):</span>
+                                <span id="summaryService">Rp 0</span>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between fw-bold fs-5">
+                                <span>Total:</span>
+                                <span id="summaryTotal">Rp 0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info small">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Pembatalan Gratis:</strong> Batalkan hingga 24 jam sebelum check-in untuk pengembalian dana penuh.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Grand Luxury Hotel</h5>
+                    <p>Jl. Merdeka No. 123, Jakarta</p>
+                    <p>Email: booking@grandluxuryhotel.com</p>
+                    <p>Telp: (021) 1234-5678</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p>&copy; 2024 Grand Luxury Hotel. All rights reserved.</p>
+                    <p class="small">
+                        <i class="fas fa-lock"></i> Website ini aman dan dilindungi enkripsi SSL<br>
+                        <i class="fas fa-user-shield"></i> Data pribadi Anda 100% aman bersama kami
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Room selection
+        let selectedRoom = '';
+        let roomPrice = 0;
+        
+        function selectRoom(roomType) {
+            // Remove selected class from all rooms
+            document.querySelectorAll('.room-option').forEach(room => {
+                room.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked room
+            const roomElement = document.getElementById(roomType + 'Room');
+            roomElement.classList.add('selected');
+            
+            // Set selected room and price
+            selectedRoom = roomType;
+            switch(roomType) {
+                case 'standard':
+                    roomPrice = 500000;
+                    document.getElementById('summaryRoom').textContent = 'Standard Room';
+                    break;
+                case 'deluxe':
+                    roomPrice = 850000;
+                    document.getElementById('summaryRoom').textContent = 'Deluxe Room';
+                    break;
+                case 'suite':
+                    roomPrice = 1200000;
+                    document.getElementById('summaryRoom').textContent = 'Suite Room';
+                    break;
+                case 'family':
+                    roomPrice = 1500000;
+                    document.getElementById('summaryRoom').textContent = 'Family Room';
+                    break;
+            }
+            
+            updateSummary();
+        }
+        
+        // Update summary based on selection
+        function updateSummary() {
+            const nights = parseInt(document.getElementById('nights').value) || 1;
+            const roomTotal = roomPrice * nights;
+            const tax = roomTotal * 0.10;
+            const service = roomTotal * 0.05;
+            const total = roomTotal + tax + service;
+            
+            document.getElementById('summaryPrice').textContent = 'Rp ' + roomTotal.toLocaleString('id-ID');
+            document.getElementById('summaryTax').textContent = 'Rp ' + tax.toLocaleString('id-ID');
+            document.getElementById('summaryService').textContent = 'Rp ' + service.toLocaleString('id-ID');
+            document.getElementById('summaryTotal').textContent = 'Rp ' + total.toLocaleString('id-ID');
+            document.getElementById('summaryNights').textContent = nights + ' Malam';
+        }
+        
+        // Date calculations
+        document.getElementById('checkIn').addEventListener('change', function() {
+            const checkInDate = new Date(this.value);
+            const checkOutInput = document.getElementById('checkOut');
+            
+            // Set min date for check-out
+            const minCheckOut = new Date(checkInDate);
+            minCheckOut.setDate(minCheckOut.getDate() + 1);
+            checkOutInput.min = minCheckOut.toISOString().split('T')[0];
+            
+            // If check-out is before check-in, reset it
+            const checkOutDate = new Date(checkOutInput.value);
+            if (checkOutDate <= checkInDate) {
+                checkOutInput.value = minCheckOut.toISOString().split('T')[0];
+            }
+            
+            calculateNights();
+        });
+        
+        document.getElementById('checkOut').addEventListener('change', calculateNights);
+        
+        function calculateNights() {
+            const checkIn = new Date(document.getElementById('checkIn').value);
+            const checkOut = new Date(document.getElementById('checkOut').value);
+            
+            if (checkIn && checkOut && checkOut > checkIn) {
+                const timeDiff = checkOut.getTime() - checkIn.getTime();
+                const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                document.getElementById('nights').value = nights;
+                updateSummary();
+            }
+        }
+        
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validation
+            if (!selectedRoom) {
+                alert('Silakan pilih tipe kamar terlebih dahulu!');
+                return;
+            }
+            
+            // Simulate data encryption
+            const bookingData = {
+                room: selectedRoom,
+                checkIn: document.getElementById('checkIn').value,
+                checkOut: document.getElementById('checkOut').value,
+                guests: document.getElementById('guests').value,
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                identity: document.getElementById('identity').value,
+                payment: document.querySelector('input[name="paymentMethod"]:checked').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Encrypt data (simulated)
+            const encryptedData = btoa(JSON.stringify(bookingData));
+            
+            // Save to sessionStorage
+            sessionStorage.setItem('lastBooking', encryptedData);
+            sessionStorage.setItem('bookingConfirmed', 'true');
+            
+            // Show success message
+            alert(`Pemesanan berhasil!\n\nBooking ID: #GLH${Date.now().toString().slice(-6)}\nSilakan cek email untuk konfirmasi pembayaran.\n\nData Anda telah diamankan dengan enkripsi.`);
+            
+            // Reset form
+            this.reset();
+            selectedRoom = '';
+            roomPrice = 0;
+            document.querySelectorAll('.room-option').forEach(room => {
+                room.classList.remove('selected');
+            });
+            updateSummary();
+            
+            // Redirect to home page
+            setTimeout(() => {
+                window.location.href = '../index.html#history';
+            }, 2000);
+        });
+        
+        // Initialize dates
+        window.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            document.getElementById('checkIn').min = today.toISOString().split('T')[0];
+            document.getElementById('checkIn').value = today.toISOString().split('T')[0];
+            document.getElementById('checkOut').min = tomorrow.toISOString().split('T')[0];
+            document.getElementById('checkOut').value = tomorrow.toISOString().split('T')[0];
+            
+            calculateNights();
+        });
+    </script>
+</body>
+</html>
